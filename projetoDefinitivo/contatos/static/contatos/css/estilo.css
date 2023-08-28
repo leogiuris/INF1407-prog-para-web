@@ -1,0 +1,13 @@
+.thDireita th{
+    text-align: right;
+}
+
+.errorList{
+    color: red;
+    list-style-type: none;
+}
+
+.helpText{
+    font-size: 10px;
+}
+
