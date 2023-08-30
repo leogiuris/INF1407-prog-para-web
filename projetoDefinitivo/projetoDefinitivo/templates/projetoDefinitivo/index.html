@@ -1,0 +1,15 @@
+{% extends 'projetoDefinitivo/base.html' %}
+{% load static %}
+{% block content %}
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'contatos/css/estilo.css' %}">
+{% endblock %}
+
+    <h1>OI</h1>
+
+    <a href="{% url 'contatos:home-contatos' %}">
+        Contatos
+    </a>
+
+{% endblock %}

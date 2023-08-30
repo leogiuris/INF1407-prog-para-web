@@ -25,5 +25,4 @@ class ContatoCreateView(View):
             contato.save()
             return HttpResponseRedirect(reverse_lazy(
             "contatos:lista-contatos"))
-        else:
-            print("aaaaaaaaaaaaaa")
+        return render(request,"contatos/criaContato.html", {"formulario":formulario})

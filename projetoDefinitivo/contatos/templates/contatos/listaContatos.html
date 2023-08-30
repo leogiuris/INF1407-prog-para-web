@@ -1,18 +1,25 @@
-{% extends 'Homepage/base.html' %}
+{% extends 'projetoDefinitivo/base.html' %}
 {% load static %}
 {% block content %}
 {% include 'contatos/links.html' %}
+
+
+{% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'contatos/css/estilo.css' %}">
+{% endblock %}
+
+
 <h1>Lista de Contatos</h1>
 <table>
     <tr>
-        <th>Nome</th>
+        <th>email</th>
         <th>Idade</th>
         <th>Salário</th>
         <th>Ações disponíveis</th>
     </tr>
     {% for pessoa in pessoas %}
     <tr>
-        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.email }}</td>
         <td>{{pessoa.idade }}</td>
         <td>{{ pessoa.salario }}</td>
 

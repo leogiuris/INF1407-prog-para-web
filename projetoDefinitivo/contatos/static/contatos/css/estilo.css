@@ -1,13 +1,18 @@
-.thDireita th{
+.thDireita th {
     text-align: right;
+    vertical-align: text-top;
 }
 
-.errorList{
+.errorList {
     color: red;
     list-style-type: none;
 }
 
-.helpText{
+.helptext {
     font-size: 10px;
 }
 
+.formulario th {
+    text-align: center;
+    vertical-align: text-top;
+}

@@ -1,19 +1,22 @@
-{% extends 'Homepage/base.html' %}
+{% extends 'projetoDefinitivo/base.html' %}
 {% load static %}
 {% block content %}
 {% include 'contatos/links.html' %}
-<link rel="stylesheet"
-        href="{% static 'contatos/css/estilo.css' %}">
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'contatos/css/estilo.css' %}">
+{% endblock %}
+
 <h1>Cria um contato</h1>
-<form action="" method="POST">
-    <fieldset style="width: max-content;">
-        <legend>Formulário de Cadastro</legend>
+<br>
+<div style="text-align: center;">
+    <form action="" method="POST">
         {% csrf_token %}
         <table class='formulario'>
-            {{ formulario.as_table }}
+            {{ formulario.as_p }}
         </table>
         <button type="submit">Cria contato</button>
-    </fieldset>
-    
-</form>
+    </form>
+</div>
+
+
 {% endblock %}
