@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'contatos/css/estilo.css' %}">
 {% endblock %}
 
-<h1>Cria um contato</h1>
+<h1>{{ titulo }}</h1>
 <br>
 <div style="text-align: center;">
     <form action="" method="POST">
@@ -14,7 +14,7 @@
         <table class='formulario'>
             {{ formulario.as_table }}
         </table>
-        <button type="submit">Cria contato</button>
+        <button type="submit" >{{ submitText }}</button>
     </form>
 </div>
 

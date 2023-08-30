@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from contatos.models import Pessoa
 from django.views.generic.base import View
 from contatos.forms import ContatoModel2Form
@@ -14,9 +14,9 @@ class ContatoListView(View):
 
 class ContatoCreateView(View):
     def get(self, request, *args, **kwargs):
-        contexto = { 'formulario': ContatoModel2Form, }
+        contexto = { 'formulario': ContatoModel2Form, "titulo":"Cria um Contato", "submitText":"Criar Contato"}
         return render(request,
-        "contatos/criaContato.html", contexto)
+        "contatos/formContato.html", contexto)
     
     def post(self, request, *args, **kwargs):
         formulario = ContatoModel2Form(request.POST)
@@ -25,4 +25,24 @@ class ContatoCreateView(View):
             contato.save()
             return HttpResponseRedirect(reverse_lazy(
             "contatos:lista-contatos"))
-        return render(request,"contatos/criaContato.html", {"formulario":formulario})
+        return render(request,"contatos/formContato.html", {"formulario":formulario, "titulo":"Cria um Contato", "submitText":"Criar Contato"})
+    
+class ContatoUpdateView(View):
+    def get(self,request,pk,*args, **kwargs):
+        pessoa = Pessoa.objects.get(pk=pk)
+        formulario = ContatoModel2Form(instance=pessoa)
+        return render(request, 'contatos/formContato.html', 
+                      {"formulario":formulario, "titulo":"Atualiza um Contato", "submitText":"Atualizar"})
+    
+    def post(self, request, pk, *args, **kwargs):
+        pessoa = get_object_or_404(Pessoa, pk=pk)
+        formulario = ContatoModel2Form(request.POST, instance=pessoa)
+        if formulario.is_valid():
+            print("form valido")
+            pessoa = formulario.save() # cria uma pessoa com os dados do formulário
+            pessoa.save() # salva uma pessoa no banco de dados
+            return HttpResponseRedirect(reverse_lazy("contatos:lista-contatos"))
+        else:
+            print("nao é valido")
+            contexto = {'pessoa': formulario, "titulo":"Atualiza um Contato", "submitText":"Atualizar"}
+            return render(request, 'contatos/formContato.html', contexto)

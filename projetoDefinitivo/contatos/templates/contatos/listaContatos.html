@@ -19,7 +19,7 @@
     </tr>
     {% for pessoa in pessoas %}
     <tr>
-        <td>{{ pessoa.email }}</td>
+        <td><a href="{% url 'contatos:atualiza-contato' pk=pessoa.id %}">{{ pessoa.nome }}</a></td>
         <td>{{pessoa.idade }}</td>
         <td>{{ pessoa.salario }}</td>
 
