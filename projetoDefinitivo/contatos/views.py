@@ -38,7 +38,6 @@ class ContatoUpdateView(View):
         pessoa = get_object_or_404(Pessoa, pk=pk)
         formulario = ContatoModel2Form(request.POST, instance=pessoa)
         if formulario.is_valid():
-            print("form valido")
             pessoa = formulario.save() # cria uma pessoa com os dados do formulário
             pessoa.save() # salva uma pessoa no banco de dados
             return HttpResponseRedirect(reverse_lazy("contatos:lista-contatos"))
@@ -46,3 +45,16 @@ class ContatoUpdateView(View):
             print("nao é valido")
             contexto = {'pessoa': formulario, "titulo":"Atualiza um Contato", "submitText":"Atualizar"}
             return render(request, 'contatos/formContato.html', contexto)
+
+class ContatoDeleteView(View):
+    def get(self,request,pk,*args, **kwargs):
+        pessoa = Pessoa.objects.get(pk=pk)
+        contexto = { 'pessoa': pessoa, }
+        return render(  request, 
+                        'contatos/apagaContato.html', 
+                        contexto)
+
+    def post(self, request, pk, *args, **kwargs):
+        pessoa = get_object_or_404(Pessoa, pk=pk)
+        pessoa.delete()
+        return HttpResponseRedirect(reverse_lazy("contatos:lista-contatos"))
