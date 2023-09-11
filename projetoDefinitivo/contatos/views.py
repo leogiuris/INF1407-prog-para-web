@@ -55,6 +55,7 @@ class ContatoDeleteView(View):
                         contexto)
 
     def post(self, request, pk, *args, **kwargs):
+        print("AAAAA")
         pessoa = get_object_or_404(Pessoa, pk=pk)
         pessoa.delete()
         return HttpResponseRedirect(reverse_lazy("contatos:lista-contatos"))
