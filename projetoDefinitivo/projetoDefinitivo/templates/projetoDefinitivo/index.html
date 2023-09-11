@@ -6,10 +6,9 @@
         <link rel="stylesheet" type="text/css" href="{% static 'contatos/css/estilo.css' %}">
 {% endblock %}
 
-    <h1>OI</h1>
-
-    <a href="{% url 'contatos:home-contatos' %}">
-        Contatos
-    </a>
+    <h1>Homepage</h1>
+    <li><a href="{% url 'contatos:home-contatos' %}">Contatos</a></li>
+    <li><a href="{% url 'sec-home' %}">Segurança</a></li>
+    
 
 {% endblock %}

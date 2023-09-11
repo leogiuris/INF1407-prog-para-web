@@ -18,12 +18,21 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from projetoDefinitivo import views
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+from django.urls.base import reverse_lazy
 
 
 urlpatterns = [
-    path('', views.home),
+    path('', views.home,name='home-page'),
     path('contatos/',include ('contatos.urls'),name="homepage"),
     path('admin/', admin.site.urls),
+    path('seguranca/', views.homeSec,name='sec-home'),
+    path('seguranca/login', LoginView.as_view(
+            template_name='seguranca/login.html'
+        ),name='sec-login'),
+    path('seguranca/logout', LogoutView.as_view(next_page=reverse_lazy('sec-home')
+        ),name='sec-logout'),
 ]
 
 

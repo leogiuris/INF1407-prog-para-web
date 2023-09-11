@@ -4,28 +4,28 @@ from contatos.models import Pessoa
 class ContatoModel2Form(forms.ModelForm):
     
     nome = forms.CharField(
-        label='',
+        label='Nome ',
         widget=forms.TextInput(attrs={'class':'w-auto form-control', 'placeholder':'nome'}),
     )
     idade = forms.IntegerField(
-        label='',
+        label='Idade ',
         widget=forms.NumberInput(attrs={'class':'w-auto form-control', 'placeholder':'idade'}),
     )
     salario = forms.DecimalField(
-        label='',
+        label='Salário ',
         widget=forms.NumberInput(attrs={'class':'w-auto form-control', 'placeholder':'salario'}),
     )
     email = forms.CharField(
-        label='',
+        label='Email ',
         widget=forms.EmailInput(attrs={'class':'w-auto form-control', 'placeholder':'email'}),
     )
     telefone = forms.CharField(
-        label='',
+        label='Telefone ',
         widget=forms.TextInput(attrs={'class':'w-auto form-control', 'placeholder':'telefone'}),
     )
     dtNasc = forms.DateField(
         input_formats=['%d/%m/%Y'],
-        label='',
+        label='Data de Nascimento  ',
         widget=forms.DateInput(attrs={'class':'w-auto form-control', 'placeholder':'dtNasc'}),
     )
     class Meta:
