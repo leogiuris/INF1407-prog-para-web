@@ -3,12 +3,13 @@
     vertical-align: text-top;
 }
 
-.errorList {
+.errorList li{
     color: red;
     list-style-type: none;
 }
 
 .helptext {
+    color: red;
     font-size: 10px;
 }
 

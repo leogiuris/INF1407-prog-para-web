@@ -19,16 +19,19 @@
     <div class="container" style="font-size: large;">
         <h1>Site Seguro</h1>
         <div style="display: inline;">
-            <a href="{% url 'home-page' %}">Homepage</a>
-            <a href="{% url 'sec-home' %}">Segurança</a>
+            <a href="{% url 'home-page' %}">Homepage</a> |
+            <a href="{% url 'sec-home' %}">Segurança</a> |
             {% if user.is_authenticated %}
-            <a href="{% url 'sec-logout' %}">Logout</a>
+            <a href="{% url 'sec-logout' %}">Logout</a> |
+            <a href="{% url 'sec-password_change' %}">troca senha</a> |
+            <a href="{% url 'sec-completaDadosUsuario' pk=user.id %}">Perfil</a> |
             {% else %}
-            <a href="{% url 'sec-login' %}?next={% url 'sec-home' %}">Login</a>
+            <a href="{% url 'sec-login' %}?next={% url 'sec-home' %}">Login</a> |
+            <a href="{% url 'sec-registro' %}">Sign Up</a>
             {% endif %}
         </div>
         <div style="display: inline;">
-            | Você é {% firstof user.username "visitante" %}
+            Você é {% firstof user.username "visitante" %}
         </div>
         <hr>
         {% block content %}{% endblock %}

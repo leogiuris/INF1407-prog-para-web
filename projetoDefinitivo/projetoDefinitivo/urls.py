@@ -18,21 +18,67 @@ from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
 from projetoDefinitivo import views
+from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import LogoutView
+from django.views.generic.edit import UpdateView
+from django.contrib.auth.models import User
 from django.urls.base import reverse_lazy
 
 
 urlpatterns = [
     path('', views.home,name='home-page'),
+
     path('contatos/',include ('contatos.urls'),name="homepage"),
+
     path('admin/', admin.site.urls),
+
     path('seguranca/', views.homeSec,name='sec-home'),
+
     path('seguranca/login', LoginView.as_view(
-            template_name='seguranca/login.html'
+            template_name='seguranca/usuario.html',
+            extra_context={
+                'titulo':'Login',
+                'tituloPagina':'Login',
+                'textoBotao':'Login',
+            }
         ),name='sec-login'),
+
     path('seguranca/logout', LogoutView.as_view(next_page=reverse_lazy('sec-home')
         ),name='sec-logout'),
+
+    path('seguranca/registro', views.registro ,name='sec-registro'),
+
+    path('seguranca/troca_senha', PasswordChangeView.as_view(
+        template_name = 'seguranca/usuario.html',
+        extra_context = {
+            'titulo':'Troca de Senha',
+            'tituloPagina':'Troca de senha',
+            'textoBotao':'Troca senha',
+        },
+        success_url=reverse_lazy('sec-password_change_done'),
+    ) ,name='sec-password_change'),
+
+    path('seguranca/troca_senha_finalizada/',
+        PasswordChangeView.as_view(
+            template_name="seguranca/password_change_done.html"), 
+        name='sec-password_change_done'),
+
+    path('seguranca/terminaRegistro/<int:pk>',
+        UpdateView.as_view(
+            template_name= 'seguranca/usuario.html',
+            success_url=reverse_lazy('sec-home'),
+            extra_context = {
+            'titulo':'Termina Registro',
+            'tituloPagina':'Termina Registro',
+            'textoBotao':'Atualiza',},
+            model=User,
+            fields=[
+                'first name','last name','email'
+            ],
+        ), name='sec-completaDadosUsuario',
+    ),
+
 ]
 
 

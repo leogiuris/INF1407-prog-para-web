@@ -1,0 +1,26 @@
+{% extends 'seguranca/base.html' %}
+{% load static %}
+{% block content %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'contatos/css/estilo.css' %}">
+{% endblock %}
+
+
+
+<h2>
+    {{tituloPagina}}
+</h2>
+
+<form action="" method="post" class="thDireita">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <tr>
+        <td></td>
+        <td><input type="submit" value={{textoBotao}}></td>
+    </tr>
+</form>
+
+{% endblock %}
