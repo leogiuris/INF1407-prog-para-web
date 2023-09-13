@@ -74,7 +74,7 @@ urlpatterns = [
             'textoBotao':'Atualiza',},
             model=User,
             fields=[
-                'first name','last name','email'
+                'first_name','last_name','email'
             ],
         ), name='sec-completaDadosUsuario',
     ),
