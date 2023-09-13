@@ -24,7 +24,7 @@
             {% if user.is_authenticated %}
             <a href="{% url 'sec-logout' %}">Logout</a>
             {% else %}
-            <a href="{% url 'sec-login' %}?next={% url 'sec-login' %}">Login</a>
+            <a href="{% url 'sec-login' %}?next={% url 'sec-home' %}">Login</a>
             {% endif %}
         </div>
         <div style="display: inline;">
